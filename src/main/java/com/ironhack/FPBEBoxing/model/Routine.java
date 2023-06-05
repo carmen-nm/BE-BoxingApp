@@ -1,6 +1,6 @@
 package com.ironhack.FPBEBoxing.model;
 
-import com.ironhack.FPBEBoxing.classes.RoutuneType;
+import com.ironhack.FPBEBoxing.classes.RoutineType;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,21 +12,21 @@ public class Routine {
     private Integer id;
     private String name;
     @Enumerated(EnumType.STRING)
-    private RoutuneType routuneType;
-    private Integer minutes;
+    private RoutineType routineType;
+    private Integer duration;
     @OneToMany
-    private List<Exercise> excercises;
-    private String materials;
+    private List<Exercise> exercises;
+    private String equipment;
 
     public Routine() {
     }
 
-    public Routine(String name, RoutuneType routuneType, Integer minutes, List<Exercise> excercises, String materials) {
+    public Routine(String name, RoutineType routineType, Integer duration, List<Exercise> excercises, String equipment) {
         this.name = name;
-        this.routuneType = routuneType;
-        this.minutes = minutes;
-        this.excercises = excercises;
-        this.materials = materials;
+        this.routineType = routineType;
+        this.duration = duration;
+        this.exercises = excercises;
+        this.equipment = equipment;
     }
 
     public Integer getId() {
@@ -37,37 +37,14 @@ public class Routine {
         this.id = id;
     }
 
-    public RoutuneType getRoutuneType() {
-        return routuneType;
+    public RoutineType getRoutineType() {
+        return routineType;
     }
 
-    public void setRoutuneType(RoutuneType routuneType) {
-        this.routuneType = routuneType;
+    public void setRoutineType(RoutineType routineType) {
+        this.routineType = routineType;
     }
 
-    public Integer getMinutes() {
-        return minutes;
-    }
-
-    public void setMinutes(Integer minutes) {
-        this.minutes = minutes;
-    }
-
-    public List<Exercise> getExcercises() {
-        return excercises;
-    }
-
-    public void setExcercises(List<Exercise> excercises) {
-        this.excercises = excercises;
-    }
-
-    public String getMaterials() {
-        return materials;
-    }
-
-    public void setMaterials(String materials) {
-        this.materials = materials;
-    }
 
     public String getName() {
         return name;
@@ -75,5 +52,29 @@ public class Routine {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
+    }
+
+    public String getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(String equipment) {
+        this.equipment = equipment;
     }
 }

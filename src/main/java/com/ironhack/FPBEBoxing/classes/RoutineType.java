@@ -1,6 +1,6 @@
 package com.ironhack.FPBEBoxing.classes;
 
-public enum RoutuneType {
+public enum RoutineType {
     STRENGTH,
     CARDIO
 }
