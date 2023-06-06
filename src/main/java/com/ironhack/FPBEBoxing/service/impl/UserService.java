@@ -48,4 +48,12 @@ public class UserService implements IUserService {
         if(userOptional.isEmpty()) return;
         userRepository.deleteById(id);
     }
+
+    @Override
+    public User userLogin(String username, String password) {
+        Optional<User> userOptional  = userRepository.findByUsernameAndPassword(username, password);
+        if(userOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+
+        return userOptional.get();
+    }
 }

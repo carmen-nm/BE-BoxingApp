@@ -11,18 +11,18 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private String img;
     private Integer sets;
     private Integer repetitions;
-    private Integer weight;
 
     public Exercise() {
     }
 
-    public Exercise(String name, Integer sets, Integer repetitions, Integer weight) {
+    public Exercise(String name, String img, Integer sets, Integer repetitions, Integer weight) {
         this.name = name;
+        this.img = img;
         this.sets = sets;
         this.repetitions = repetitions;
-        this.weight = weight;
     }
 
     public Integer getId() {
@@ -57,11 +57,13 @@ public class Exercise {
         this.repetitions = repetitions;
     }
 
-    public Integer getWeight() {
-        return weight;
+
+
+    public String getImg() {
+        return img;
     }
 
-    public void setWeight(Integer weight) {
-        this.weight = weight;
+    public void setImg(String img) {
+        this.img = img;
     }
 }

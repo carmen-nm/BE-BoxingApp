@@ -1,5 +1,6 @@
 package com.ironhack.FPBEBoxing.controller.impl;
 
+import com.ironhack.FPBEBoxing.controller.DTO.UserLoginDTO;
 import com.ironhack.FPBEBoxing.controller.interfaces.IUserController;
 import com.ironhack.FPBEBoxing.model.Exercise;
 import com.ironhack.FPBEBoxing.model.Routine;
@@ -46,5 +47,11 @@ public class UserController implements IUserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Integer id){
         userService.deleteUser(id);
+    }
+
+    @PatchMapping("/users/login")
+    @ResponseStatus(HttpStatus.OK)
+    public User login(@RequestBody UserLoginDTO userLoginDTO){
+        return userService.userLogin(userLoginDTO.getUsername(), userLoginDTO.getPassword());
     }
 }

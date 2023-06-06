@@ -11,6 +11,7 @@ public class Routine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private String img;
     @Enumerated(EnumType.STRING)
     private RoutineType routineType;
     private Integer duration;
@@ -21,8 +22,9 @@ public class Routine {
     public Routine() {
     }
 
-    public Routine(String name, RoutineType routineType, Integer duration, List<Exercise> excercises, String equipment) {
+    public Routine(String name, String img, RoutineType routineType, Integer duration, List<Exercise> excercises, String equipment) {
         this.name = name;
+        this.img = img;
         this.routineType = routineType;
         this.duration = duration;
         this.exercises = excercises;
@@ -76,5 +78,13 @@ public class Routine {
 
     public void setEquipment(String equipment) {
         this.equipment = equipment;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
