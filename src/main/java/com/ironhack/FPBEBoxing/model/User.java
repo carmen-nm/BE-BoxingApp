@@ -11,7 +11,7 @@ public class User {
     private Integer id;
     private String username;
     private String password;
-    @OneToMany
+    @ManyToMany
     private List<Routine> routines;
 
     public User() {
@@ -50,5 +50,13 @@ public class User {
             throw new IllegalArgumentException("The password cannot exceed 20 characters.");
         }
         this.password = password;
+    }
+
+    public List<Routine> getRoutines() {
+        return routines;
+    }
+
+    public void setRoutines(List<Routine> routines) {
+        this.routines = routines;
     }
 }

@@ -63,9 +63,6 @@ public class Routine {
     }
 
     public void setDuration(Integer duration) {
-        if (duration < 0 || duration <= 180) {
-            throw new IllegalArgumentException("The duration must be greater than 180 and cannot be negative.");
-        }
         this.duration = duration;
     }
 

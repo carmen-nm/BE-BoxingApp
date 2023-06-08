@@ -16,4 +16,8 @@ public interface IUserService {
     void deleteUser(Integer id);
 
     User userLogin(String username, String password);
+
+    void addUserRoutines(Integer id, Integer routineId);
+
+    void deleteUserRoutines(Integer id, Integer routineId);
 }

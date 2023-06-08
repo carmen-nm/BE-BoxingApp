@@ -54,4 +54,16 @@ public class UserController implements IUserController {
     public User login(@RequestBody UserLoginDTO userLoginDTO){
         return userService.userLogin(userLoginDTO.getUsername(), userLoginDTO.getPassword());
     }
+
+    @PatchMapping("/users/{id}/{routineId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void addUserRoutines(@PathVariable Integer id, @PathVariable Integer routineId){
+        userService.addUserRoutines(id, routineId);
+    }
+
+    @DeleteMapping ("/users/{id}/{routineId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUserRoutines(@PathVariable Integer id, @PathVariable Integer routineId){
+        userService.deleteUserRoutines(id, routineId);
+    }
 }

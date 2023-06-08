@@ -1,7 +1,9 @@
 package com.ironhack.FPBEBoxing.service.impl;
 
+import com.ironhack.FPBEBoxing.model.Exercise;
 import com.ironhack.FPBEBoxing.model.Routine;
 import com.ironhack.FPBEBoxing.model.User;
+import com.ironhack.FPBEBoxing.repository.RoutineRepository;
 import com.ironhack.FPBEBoxing.repository.UserRepository;
 import com.ironhack.FPBEBoxing.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoutineRepository routineRepository;
 
     @Override
     public List<User> getAllUsers() {
@@ -55,5 +60,36 @@ public class UserService implements IUserService {
         if(userOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
 
         return userOptional.get();
+    }
+
+    @Override
+    public void addUserRoutines(Integer userId, Integer routineId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if(userOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "user " + userId + " not found");
+        User user = userOptional.get();
+
+        Optional<Routine> routineOptional = routineRepository.findById(routineId);
+        if(routineOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "routine " + routineId + " not found");
+        Routine routine = routineOptional.get();
+
+        user.getRoutines().add(routine);
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUserRoutines(Integer userId, Integer routineId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if(userOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "user " + userId + " not found");
+        User user = userOptional.get();
+
+        Optional<Routine> routineOptional = routineRepository.findById(routineId);
+        if(routineOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "routine " + routineId + " not found");
+        Routine routine = routineOptional.get();
+
+        List<Routine> routines = user.getRoutines();
+        routines.removeIf(e -> e.getId().equals(routineId));
+
+        userRepository.save(user);
     }
 }

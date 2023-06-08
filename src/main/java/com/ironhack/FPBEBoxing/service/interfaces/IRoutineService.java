@@ -10,11 +10,13 @@ public interface IRoutineService {
 
     Routine getRoutineById(Integer id);
 
-    void saveRoutine(Routine routine);
+    Routine saveRoutine(Routine routine);
 
     void updateRoutine(Routine routine, Integer id);
 
     void deleteRoutine(Integer id);
 
     void addRoutineExercises(Integer routineId, Integer exerciseId);
+
+    void deleteRoutineExercises(Integer id, Integer exerciseId);
 }

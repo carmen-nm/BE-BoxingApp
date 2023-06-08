@@ -36,8 +36,10 @@ public class RoutineService implements IRoutineService {
     }
 
     @Override
-    public void saveRoutine(Routine routine) {
+    public Routine saveRoutine(Routine routine) {
         routineRepository.save(routine);
+
+        return routine;
     }
 
     @Override
@@ -66,6 +68,22 @@ public class RoutineService implements IRoutineService {
         Exercise exercise = exerciseOptional.get();
 
         routine.getExercises().add(exercise);
+
+        routineRepository.save(routine);
+    }
+
+    @Override
+    public void deleteRoutineExercises(Integer routineId, Integer exerciseId) {
+        Optional<Routine> routineOptional = routineRepository.findById(routineId);
+        if(routineOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "routine " + routineId + " not found");
+        Routine routine = routineOptional.get();
+
+        Optional<Exercise> exerciseOptional = exerciseRepository.findById(exerciseId);
+        if(exerciseOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "exercise " + exerciseId + " not found");
+        Exercise exercise = exerciseOptional.get();
+
+        List<Exercise> exercises = routine.getExercises();
+        exercises.removeIf(e -> e.getId().equals(exerciseId));
 
         routineRepository.save(routine);
     }

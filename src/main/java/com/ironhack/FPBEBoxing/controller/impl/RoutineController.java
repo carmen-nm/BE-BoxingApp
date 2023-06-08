@@ -30,8 +30,8 @@ public class RoutineController implements IRoutineController {
 
     @PostMapping("/routines")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveRoutine(@RequestBody @Valid Routine routine){
-        routineService.saveRoutine(routine);
+    public Routine saveRoutine(@RequestBody @Valid Routine routine){
+        return routineService.saveRoutine(routine);
     }
 
     @PutMapping("/routines/{id}")
@@ -50,6 +50,12 @@ public class RoutineController implements IRoutineController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addRoutineExercises(@PathVariable Integer id, @PathVariable Integer exerciseId){
         routineService.addRoutineExercises(id, exerciseId);
+    }
+
+    @DeleteMapping ("/routines/{id}/{exerciseId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteRoutineExercises(@PathVariable Integer id, @PathVariable Integer exerciseId){
+        routineService.deleteRoutineExercises(id, exerciseId);
     }
 
 }
