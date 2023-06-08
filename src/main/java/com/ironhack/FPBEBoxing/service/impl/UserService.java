@@ -37,7 +37,7 @@ public class UserService implements IUserService {
     @Override
     public void updateUser(User user, Integer id) {
         Optional<User> userOptional = userRepository.findById(id);
-        if(userOptional.isEmpty()) return;
+        if(userOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         user.setId(id);
         userRepository.save(user);
     }
@@ -45,7 +45,7 @@ public class UserService implements IUserService {
     @Override
     public void deleteUser(Integer id) {
         Optional<User> userOptional  = userRepository.findById(id);
-        if(userOptional.isEmpty()) return;
+        if(userOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         userRepository.deleteById(id);
     }
 

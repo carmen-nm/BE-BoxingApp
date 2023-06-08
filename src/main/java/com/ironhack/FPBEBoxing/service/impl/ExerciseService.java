@@ -37,7 +37,7 @@ public class ExerciseService implements IExerciseService {
     @Override
     public void updateExercise(Exercise exercise, Integer id) {
         Optional<Exercise> exerciseOptional = exerciseRepository.findById(id);
-        if(exerciseOptional.isEmpty()) return;
+        if(exerciseOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "exercise " + id + " not found");
         exercise.setId(id);
         exerciseRepository.save(exercise);
     }
@@ -45,7 +45,7 @@ public class ExerciseService implements IExerciseService {
     @Override
     public void deleteExercise(Integer id) {
         Optional<Exercise> exerciseOptional  = exerciseRepository.findById(id);
-        if(exerciseOptional.isEmpty()) return;
+        if(exerciseOptional.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "exercise " + id + " not found");
         exerciseRepository.deleteById(id);
     }
 }

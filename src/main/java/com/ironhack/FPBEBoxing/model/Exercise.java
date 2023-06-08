@@ -18,11 +18,11 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(String name, String img, Integer sets, Integer repetitions, Integer weight) {
-        this.name = name;
-        this.img = img;
-        this.sets = sets;
-        this.repetitions = repetitions;
+    public Exercise(String name, String img, Integer sets, Integer repetitions) {
+        setName(name);
+        setImg(img);
+        setSets(sets);
+        setRepetitions(repetitions);
     }
 
     public Integer getId() {
@@ -38,6 +38,9 @@ public class Exercise {
     }
 
     public void setName(String name) {
+        if (name.length() > 30) {
+            throw new IllegalArgumentException("The exercise name cannot exceed 30 characters.");
+        }
         this.name = name;
     }
 
@@ -46,6 +49,9 @@ public class Exercise {
     }
 
     public void setSets(Integer sets) {
+        if (sets < 0 || sets >= 101) {
+            throw new IllegalArgumentException("The sets must be greater than or equal to 0 and less than 101.");
+        }
         this.sets = sets;
     }
 
@@ -54,10 +60,11 @@ public class Exercise {
     }
 
     public void setRepetitions(Integer repetitions) {
+        if (repetitions < 0 || repetitions >= 101) {
+            throw new IllegalArgumentException("The repetitions must be greater than or equal to 0 and less than 101.");
+        }
         this.repetitions = repetitions;
     }
-
-
 
     public String getImg() {
         return img;

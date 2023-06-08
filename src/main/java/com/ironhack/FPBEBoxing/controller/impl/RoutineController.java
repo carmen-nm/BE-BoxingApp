@@ -1,7 +1,6 @@
 package com.ironhack.FPBEBoxing.controller.impl;
 
 import com.ironhack.FPBEBoxing.controller.interfaces.IRoutineController;
-import com.ironhack.FPBEBoxing.model.Exercise;
 import com.ironhack.FPBEBoxing.model.Routine;
 import com.ironhack.FPBEBoxing.service.impl.RoutineService;
 import jakarta.validation.Valid;
@@ -46,4 +45,11 @@ public class RoutineController implements IRoutineController {
     public void deleteRoutine(@PathVariable Integer id){
         routineService.deleteRoutine(id);
     }
+
+    @PatchMapping("/routines/{id}/{exerciseId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void addRoutineExercises(@PathVariable Integer id, @PathVariable Integer exerciseId){
+        routineService.addRoutineExercises(id, exerciseId);
+    }
+
 }

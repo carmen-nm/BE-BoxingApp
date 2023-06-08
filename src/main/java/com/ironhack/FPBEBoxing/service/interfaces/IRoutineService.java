@@ -1,5 +1,6 @@
 package com.ironhack.FPBEBoxing.service.interfaces;
 
+import com.ironhack.FPBEBoxing.model.Exercise;
 import com.ironhack.FPBEBoxing.model.Routine;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface IRoutineService {
     void updateRoutine(Routine routine, Integer id);
 
     void deleteRoutine(Integer id);
+
+    void addRoutineExercises(Integer routineId, Integer exerciseId);
 }

@@ -15,20 +15,20 @@ public class Routine {
     @Enumerated(EnumType.STRING)
     private RoutineType routineType;
     private Integer duration;
-    @OneToMany
+    @ManyToMany
     private List<Exercise> exercises;
     private String equipment;
 
     public Routine() {
     }
 
-    public Routine(String name, String img, RoutineType routineType, Integer duration, List<Exercise> excercises, String equipment) {
-        this.name = name;
-        this.img = img;
-        this.routineType = routineType;
-        this.duration = duration;
-        this.exercises = excercises;
-        this.equipment = equipment;
+    public Routine(String name, String img, RoutineType routineType, Integer duration, List<Exercise> exercises, String equipment) {
+        setName(name);
+        setImg(img);
+        setRoutineType(routineType);
+        setDuration(duration);
+        setExercises(exercises);
+        setEquipment(equipment);
     }
 
     public Integer getId() {
@@ -47,12 +47,14 @@ public class Routine {
         this.routineType = routineType;
     }
 
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
+        if (name.length() > 30) {
+            throw new IllegalArgumentException("The routine name cannot exceed 30 characters.");
+        }
         this.name = name;
     }
 
@@ -61,6 +63,9 @@ public class Routine {
     }
 
     public void setDuration(Integer duration) {
+        if (duration < 0 || duration <= 180) {
+            throw new IllegalArgumentException("The duration must be greater than 180 and cannot be negative.");
+        }
         this.duration = duration;
     }
 
