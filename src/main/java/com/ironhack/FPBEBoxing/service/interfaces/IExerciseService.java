@@ -9,7 +9,7 @@ public interface IExerciseService {
 
     Exercise getExerciseById(Integer id);
 
-    void saveExercise(Exercise exercise);
+    Exercise saveExercise(Exercise exercise);
 
     void updateExercise(Exercise exercise, Integer id);
 

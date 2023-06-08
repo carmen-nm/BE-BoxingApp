@@ -30,8 +30,8 @@ public class ExerciseController implements IExerciseController {
 
     @PostMapping("/exercises")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveExercise(@RequestBody @Valid Exercise exercise){
-        exerciseService.saveExercise(exercise);
+    public Exercise saveExercise(@RequestBody @Valid Exercise exercise){
+        return exerciseService.saveExercise(exercise);
     }
 
     @PutMapping("/exercises/{id}")
